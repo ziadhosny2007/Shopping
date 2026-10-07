@@ -1,15 +1,8 @@
-// import 'package:shopping/appSection/account.dart';
-// import 'package:shopping/appSection/app_section.dart';
-// import 'package:shopping/appSection/cart.dart';
-// import 'package:shopping/appSection/favourite.dart';
-// import 'package:shopping/appSection/home.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shopping/core/screens/hello.dart';
-// import 'package:shopping/core/screens/login.dart';
 import 'package:shopping/core/screens/onboarding.dart';
-// import 'package:shopping/core/screens/register.dart';
-// import 'package:shopping/core/screens/reset_password.dart';
 import 'package:shopping/core/screens/splash.dart';
+import 'package:shopping/features/app_section/view/app_section.dart';
 
 abstract class Routes {
   static String login = "login";
@@ -31,7 +24,7 @@ abstract class Routes {
     //     account: (context) => Account(),
     //     favourite: (context) => Favourite(),
     splash: (context) => Splash(),
-    //     appSection: (context) => AppSection(),
+    appSection: (context) => AppSection(),
     onboarding: (context) => Onboarding(),
     //     home: (context) => Home(),
     //     resetPassword: (context) => ResetPassword(),
