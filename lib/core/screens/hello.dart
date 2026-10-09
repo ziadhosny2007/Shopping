@@ -56,9 +56,7 @@ class _HelloState extends State<Hello> {
                   height: 48,
                   width: 343,
                   onPressed: () {
-                    Navigator.of(
-                      context,
-                    ).pushNamed("register");
+                    Navigator.of(context).pushNamed("register");
                   },
                 ),
                 SecoundaryBtn(
@@ -66,9 +64,7 @@ class _HelloState extends State<Hello> {
                   height: 48,
                   width: 343,
                   onPressed: () {
-                    Navigator.of(
-                      context,
-                    ).pushNamed("login");
+                    Navigator.of(context).pushNamed("appSection");
                   },
                 ),
               ],

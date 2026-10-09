@@ -34,10 +34,11 @@ class _OnboardingState extends State<Onboarding> {
       appBar: AppBar(
         actions: [
           TextButton(
-            onPressed: () {
+            onPressed: () async {
               Navigator.of(
                 context,
               ).pushNamedAndRemoveUntil("hello", (route) => false);
+              await isFirstTime.setBool("flage", false);
             },
             child: Text(
               "Skip",
