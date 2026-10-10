@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping/core/Themes/colors_app.dart';
 import 'package:shopping/features/app_section/view_model/app_section_cubit.dart';
+import 'package:shopping/features/home/presentation/view/screens/home_screen.dart';
 
 class AppSection extends StatelessWidget {
   const AppSection({super.key});
@@ -10,7 +11,7 @@ class AppSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> Page = [
-      Center(child: Text("Home")),
+      Home(),
       Center(child: Text("Cart")),
       Center(child: Text("Favourite")),
       Center(child: Text("Account")),

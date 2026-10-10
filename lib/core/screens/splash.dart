@@ -1,6 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shopping/core/routes/initial_route.dart';
+import 'package:shopping/core/routes/routes.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -17,9 +19,10 @@ class _SplashState extends State<Splash> {
       SharedPreferencesAsync isFirstTime = SharedPreferencesAsync();
       bool? flage = await isFirstTime.getBool("flage");
       if (flage == false) {
-        Navigator.of(context).pushReplacementNamed("hello");
+        String route = await initialRoute();
+        Navigator.of(context).pushReplacementNamed(route);
       } else {
-        Navigator.of(context).pushReplacementNamed("onboarding");
+        Navigator.of(context).pushReplacementNamed(Routes.onboarding);
       }
     });
   }
