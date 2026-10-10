@@ -8,3 +8,5 @@ final serviceLocator = GetIt.instance;
 Future<void> configureDependencies() async {
   await serviceLocator.init();
 }
+
+	

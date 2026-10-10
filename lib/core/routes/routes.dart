@@ -5,6 +5,10 @@ import 'package:shopping/core/screens/hello.dart';
 import 'package:shopping/core/screens/onboarding.dart';
 import 'package:shopping/core/screens/splash.dart';
 import 'package:shopping/features/app_section/view/app_section.dart';
+import 'package:shopping/features/auth/presentation/view/screens/login.dart';
+import 'package:shopping/features/auth/presentation/view/screens/register.dart';
+import 'package:shopping/features/auth/presentation/view_model/Login_cubit/login_cubit.dart';
+import 'package:shopping/features/auth/presentation/view_model/Register_cubit/register_cubit.dart';
 
 abstract class Routes {
   static String login = "login";
@@ -20,15 +24,15 @@ abstract class Routes {
   static String appSection = "appSection";
 
   static Map<String, WidgetBuilder> routes = {
-    // login: (context) => BlocProvider(
-    //   create: (context) => serviceLocator<LoginCubit>(),
-    //   child: Login(),
-    // ),
+    login: (context) => BlocProvider(
+      create: (context) => serviceLocator<LoginCubit>(),
+      child: Login(),
+    ),
 
-    // register: (context) => BlocProvider(
-    //   create: (context) => serviceLocator<RegisterCubit>(),
-    //   child: Register(),
-    // ),
+    register: (context) => BlocProvider(
+      create: (context) => serviceLocator<RegisterCubit>(),
+      child: Register(),
+    ),
     // cart: (context) => Cart(),
     // account: (context) => Account(),
     // favourite: (context) => Favourite(),
