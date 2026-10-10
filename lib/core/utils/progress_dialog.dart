@@ -6,19 +6,22 @@ class ProgressDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      backgroundColor: Color(0xffffffff),
-      alignment: .center,
-      insetAnimationCurve: Curves.easeInSine,
-      constraints: BoxConstraints(maxWidth: 300, maxHeight: 200),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(30),
-      ),
-      shadowColor: Colors.black.withAlpha(200),
-      child: Center(
-        child: LoadingAnimationWidget.discreteCircle(
-          size: 50,
-          color: Colors.blue,
+    return PopScope(
+      canPop: false,
+      child: Dialog(
+        backgroundColor: Color(0xffffffff),
+        alignment: .center,
+        insetAnimationCurve: Curves.easeInSine,
+        constraints: BoxConstraints(maxWidth: 300, maxHeight: 200),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(30),
+        ),
+        shadowColor: Colors.black.withAlpha(200),
+        child: Center(
+          child: LoadingAnimationWidget.discreteCircle(
+            size: 50,
+            color: Colors.blue,
+          ),
         ),
       ),
     );

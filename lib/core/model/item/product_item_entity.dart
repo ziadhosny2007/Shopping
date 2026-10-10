@@ -1,20 +1,19 @@
 class ProductItemEntity {
-  final int id;
-  final String title;
-  final String description;
-  final double price;
-  final double discountPercentage;
-  final double rating;
-  final List<String> images;
+  int id = 0;
+  String title = '';
+  String description = '';
+  double price=100;
+  double discountPercentage = 0;
+  double rating = 2;
+  List<String> images = [];
 
-  const ProductItemEntity({
+  ProductItemEntity({
     required this.id,
     required this.title,
     required this.description,
     required this.price,
     required this.discountPercentage,
     required this.rating,
-
     required this.images,
   });
 }
