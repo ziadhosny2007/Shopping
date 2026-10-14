@@ -10,6 +10,6 @@ class ProductByCategoryUseCase {
   Future<Result<ProductByCategoryEntity>> invoke(
     String slug, {
     int skip = 0,
-    int limit = 20,
+    int limit = 10,
   }) async => await _repo.getProductByCategory(slug, limit: limit, skip: skip);
 }

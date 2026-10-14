@@ -11,7 +11,9 @@ class ProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+       
+      },
       child: Container(
         width: 164,
         height: 300,

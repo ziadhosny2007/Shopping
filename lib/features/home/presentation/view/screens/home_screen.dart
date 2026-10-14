@@ -6,6 +6,7 @@ import 'package:shopping/core/model/widget/product_widget.dart';
 import 'package:shopping/features/home/domain/entities/item_entity.dart';
 import 'package:shopping/features/home/presentation/view/widgets/category_item.dart';
 import 'package:shopping/features/home/presentation/view_model/home_cubit.dart';
+import 'package:shopping/features/product_by_category/presentation/view/category_screen.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class Home extends StatelessWidget {
@@ -95,9 +96,21 @@ class _HomeViewState extends State<HomeView> {
                         scrollDirection: Axis.horizontal,
                         itemCount: state.categories.length,
                         itemBuilder: (context, index) {
-                          return CategoryItem(
-                            name: state.categories[index].name,
-                            slug: state.categories[index].slug,
+                          return InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => CategoryScreen(
+                                    name: state.categories[index].name,
+                                    slug: state.categories[index].slug,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: CategoryItem(
+                              name: state.categories[index].name,
+                              slug: state.categories[index].slug,
+                            ),
                           );
                         },
                       ),
@@ -116,8 +129,10 @@ class _HomeViewState extends State<HomeView> {
                     height: 40,
                     child: Skeletonizer(
                       enabled: true,
-                      effect: ShimmerEffect.raw(
-                        colors: [Color.fromARGB(0, 255, 255, 255)],
+                      effect: ShimmerEffect(
+                        baseColor: Color(0xFFE8E8E8),
+                        highlightColor: Color(0xFFF8F8F8),
+                        duration: Duration(milliseconds: 1200),
                       ),
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,

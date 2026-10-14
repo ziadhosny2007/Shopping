@@ -15,7 +15,7 @@ class ProductByCategoryDataSourceImp
   Future<Result<ProductByCategoryDto>> getProductByCategory(
     String slug, {
     int skip = 0,
-    int limit = 20,
+    int limit = 10,
   }) async {
     final res = await _api.getProductByCategory(slug, limit: limit, skip: skip);
     switch (res) {

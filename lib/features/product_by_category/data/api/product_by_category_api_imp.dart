@@ -18,7 +18,7 @@ class ProductByCategoryApiImp implements ProductByCategoryApiInterface {
   Future<Result<ProductByCategoryDto>> getProductByCategory(
     String slug, {
     int skip = 0,
-    int limit = 100,
+    int limit = 10,
   }) async {
     try {
       final url = Uri.parse(

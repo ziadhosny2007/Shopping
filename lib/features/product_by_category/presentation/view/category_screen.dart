@@ -69,41 +69,46 @@ class _CategoryScreenState extends State<CategoryScreenView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.name)),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: .center,
-          children: [
-            Expanded(
-              child:
-                  BlocBuilder<ProductByCategoryCubit, ProductByCategoryState>(
-                    builder: (context, state) {
-                      if (state is StateLoading) {
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: .center,
+
+            children: [
+              Expanded(
+                child:
+                    BlocBuilder<ProductByCategoryCubit, ProductByCategoryState>(
+                      builder: (context, state) {
+                        if (state is StateLoading) {
+                          return const _LoadingWidget();
+                        }
+
+                        if (state is StateSuccess) {
+                          return _SuccessWidget(
+                            items: state.data,
+                            scrollController: _scrollController,
+                          );
+                        }
+
+                        if (state is StateError) {
+                          return Center(
+                            child: Text(
+                              state.error,
+                              style: Theme.of(context)
+                                  .primaryTextTheme
+                                  .bodyLarge
+                                  ?.copyWith(color: Colors.red),
+                            ),
+                          );
+                        }
+
                         return const _LoadingWidget();
-                      }
-
-                      if (state is StateSuccess) {
-                        return _SuccessWidget(
-                          items: state.data,
-                          scrollController: _scrollController,
-                        );
-                      }
-
-                      if (state is StateError) {
-                        return Center(
-                          child: Text(
-                            state.error,
-                            style: Theme.of(context).primaryTextTheme.bodyLarge
-                                ?.copyWith(color: Colors.red),
-                          ),
-                        );
-                      }
-
-                      return const _LoadingWidget();
-                    },
-                  ),
-            ),
-          ],
+                      },
+                    ),
+              ),
+            ],
+          ),
         ),
       ),
     );

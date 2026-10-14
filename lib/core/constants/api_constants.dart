@@ -4,7 +4,7 @@ abstract class ApiConstants {
   static String register = "/auth/signUp";
   static String login = "/auth/signIn";
 
-  static const String getProductsByCategory = '/home/products/category';
+  static const String getProductsByCategory = '/home/products/category/';
   static const String getAllCategories = '/home/categories';
   static const String getAllProduct = '/home/products';
   static const String getFavorite = '/user/getFavorite';

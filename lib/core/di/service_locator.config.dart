@@ -47,6 +47,22 @@ import 'package:shopping/features/home/domain/use_case/get_item_use_case.dart'
     as _i1018;
 import 'package:shopping/features/home/presentation/view_model/home_cubit.dart'
     as _i724;
+import 'package:shopping/features/product_by_category/data/api/product_by_category_api_imp.dart'
+    as _i886;
+import 'package:shopping/features/product_by_category/data/api/product_by_category_api_interface.dart'
+    as _i705;
+import 'package:shopping/features/product_by_category/data/repo/product_by_category_data_source_imp.dart'
+    as _i324;
+import 'package:shopping/features/product_by_category/data/repo/product_by_category_repo_imp.dart'
+    as _i87;
+import 'package:shopping/features/product_by_category/domain/repo/product_by_category_data_source_interface.dart'
+    as _i830;
+import 'package:shopping/features/product_by_category/domain/repo/product_by_category_repo_interface.dart'
+    as _i1033;
+import 'package:shopping/features/product_by_category/domain/use_case/product_by_category_use_case.dart'
+    as _i836;
+import 'package:shopping/features/product_by_category/presentation/view_model/product_by_category_cubit.dart'
+    as _i716;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -61,11 +77,32 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i414.AppSecureStorage>(
       () => _i414.AppSecureStorage(gh<_i558.FlutterSecureStorage>()),
     );
+    gh.factory<_i705.ProductByCategoryApiInterface>(
+      () => _i886.ProductByCategoryApiImp(gh<_i414.AppSecureStorage>()),
+    );
+    gh.factory<_i830.ProductByCategoryDataSourceInterface>(
+      () => _i324.ProductByCategoryDataSourceImp(
+        gh<_i705.ProductByCategoryApiInterface>(),
+      ),
+    );
     gh.factory<_i900.AuthDataSourceInterface>(
       () => _i867.AuthDataSourceImp(gh<_i572.AuthApi>()),
     );
     gh.factory<_i801.HomeProductApiInterface>(
       () => _i361.HomeProductApi(gh<_i414.AppSecureStorage>()),
+    );
+    gh.factory<_i1033.ProductByCategoryRepoInterface>(
+      () => _i87.ProductByCategoryRepoImp(
+        gh<_i830.ProductByCategoryDataSourceInterface>(),
+      ),
+    );
+    gh.factory<_i836.ProductByCategoryUseCase>(
+      () => _i836.ProductByCategoryUseCase(
+        gh<_i1033.ProductByCategoryRepoInterface>(),
+      ),
+    );
+    gh.factory<_i716.ProductByCategoryCubit>(
+      () => _i716.ProductByCategoryCubit(gh<_i836.ProductByCategoryUseCase>()),
     );
     gh.factory<_i340.AuthRepoInterface>(
       () => _i1013.AuthRepoImp(gh<_i900.AuthDataSourceInterface>()),

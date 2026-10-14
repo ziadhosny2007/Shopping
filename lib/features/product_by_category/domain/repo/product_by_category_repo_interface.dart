@@ -5,6 +5,6 @@ abstract class ProductByCategoryRepoInterface {
   Future<Result<ProductByCategoryEntity>> getProductByCategory(
     String slug, {
     int skip = 0,
-    int limit = 20,
+    int limit = 10,
   });
 }
