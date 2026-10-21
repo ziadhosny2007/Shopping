@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping/core/Themes/colors_app.dart';
+import 'package:shopping/core/routes/routes.dart';
 import 'package:shopping/core/widgets/Buttons/primary_btn.dart';
 import 'package:shopping/core/widgets/Buttons/secoundary_btn.dart';
 
@@ -56,7 +57,7 @@ class _HelloState extends State<Hello> {
                   height: 48,
                   width: 343,
                   onPressed: () {
-                    Navigator.of(context).pushNamed("register");
+                    Navigator.of(context).pushNamed(Routes.register);
                   },
                 ),
                 SecoundaryBtn(
@@ -64,7 +65,7 @@ class _HelloState extends State<Hello> {
                   height: 48,
                   width: 343,
                   onPressed: () {
-                    Navigator.of(context).pushNamed("appSection");
+                    Navigator.of(context).pushNamed(Routes.login);
                   },
                 ),
               ],
