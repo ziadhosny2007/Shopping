@@ -6,13 +6,14 @@ import 'package:shopping/features/app_section/view_model/app_section_cubit.dart'
 import 'package:shopping/features/cart/presentation/view/screens/cart_screen.dart';
 import 'package:shopping/features/favourite/presentation/view/favourite_screen.dart';
 import 'package:shopping/features/home/presentation/view/screens/home_screen.dart';
+import 'package:shopping/features/profile/presentation/view/profile.dart';
 
 class AppSection extends StatelessWidget {
   const AppSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> Page = [Home(), CartScreen(), FavouriteScreen(),Text("Profile")];
+    List<Widget> Page = [Home(), CartScreen(), FavouriteScreen(), Account()];
     int index = 0;
     return BlocProvider(
       create: (context) => BottomNavCubitCubit()..intent(GetIndx(index)),
@@ -29,7 +30,6 @@ class AppSection extends StatelessWidget {
           }
 
           return Scaffold(
-            
             body: Page[index],
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: index,
