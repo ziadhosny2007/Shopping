@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping/core/Themes/colors_app.dart';
 import 'package:shopping/features/app_section/view_model/app_section_cubit.dart';
+import 'package:shopping/features/cart/presentation/view/screens/cart_screen.dart';
+import 'package:shopping/features/favourite/presentation/view/favourite_screen.dart';
 import 'package:shopping/features/home/presentation/view/screens/home_screen.dart';
 
 class AppSection extends StatelessWidget {
@@ -10,12 +12,7 @@ class AppSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> Page = [
-      Home(),
-      Center(child: Text("Cart")),
-      Center(child: Text("Favourite")),
-      Center(child: Text("Account")),
-    ];
+    List<Widget> Page = [Home(), CartScreen(), FavouriteScreen(),Text("Profile")];
     int index = 0;
     return BlocProvider(
       create: (context) => BottomNavCubitCubit()..intent(GetIndx(index)),
@@ -32,6 +29,7 @@ class AppSection extends StatelessWidget {
           }
 
           return Scaffold(
+            
             body: Page[index],
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: index,

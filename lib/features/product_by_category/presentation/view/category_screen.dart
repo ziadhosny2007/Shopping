@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:shopping/core/di/service_locator.dart';
 import 'package:shopping/core/model/item/product_item_entity.dart';
 import 'package:shopping/core/model/widget/product_widget.dart';
+import 'package:shopping/core/utils/massege_error.dart';
+import 'package:shopping/features/favourite/presentation/view_model/favourite_cubit.dart';
 import 'package:shopping/features/product_by_category/domain/entities/product_by_category_entity.dart';
 import 'package:shopping/features/product_by_category/presentation/view_model/product_by_category_cubit.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -85,20 +88,45 @@ class _CategoryScreenState extends State<CategoryScreenView> {
                         }
 
                         if (state is StateSuccess) {
-                          return _SuccessWidget(
-                            items: state.data,
-                            scrollController: _scrollController,
+                          return Center(
+                            child: _SuccessWidget(
+                              items: state.data,
+                              scrollController: _scrollController,
+                            ),
                           );
                         }
 
                         if (state is StateError) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              duration: Duration(seconds: 3),
+                              showCloseIcon: true,
+                              content: Text(
+                                state.error,
+                                style: TextStyle(
+                                  fontWeight: .w400,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              backgroundColor: Colors.red,
+                              elevation: 2,
+                            ),
+                          );
                           return Center(
-                            child: Text(
-                              state.error,
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .bodyLarge
-                                  ?.copyWith(color: Colors.red),
+                            child: Column(
+                              mainAxisAlignment: .center,
+                              crossAxisAlignment: .center,
+                              spacing: 12,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: SvgPicture.asset(
+                                    "assets/svg/error.svg",
+                                    width: 200,
+                                    height: 200,
+                                  ),
+                                ),
+                              ],
                             ),
                           );
                         }
@@ -123,31 +151,38 @@ class _SuccessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      controller: scrollController,
-      padding: const EdgeInsets.only(top: 10, right: 16, bottom: 20),
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        mainAxisExtent: 300,
-        maxCrossAxisExtent: 200,
-        mainAxisSpacing: 20,
-        crossAxisSpacing: 10,
-      ),
-      itemCount: items.length,
-      itemBuilder: (context, i) {
-        final item = items[i];
-
-        return ProductWidget(
-          product: ProductItemEntity(
-            id: item.id,
-            title: item.title,
-            description: item.description,
-            price: item.price,
-            discountPercentage: item.discountPercentage,
-            rating: item.rating,
-            images: item.images,
-          ),
-        );
+    return BlocListener<FavouriteCubit, FavouriteState>(
+      listener: (context, state) {
+        if (state is FavouriteError) {
+          MassegeError.show(context, error: state.error);
+        }
       },
+      child: GridView.builder(
+        controller: scrollController,
+        padding: const EdgeInsets.only(top: 10, right: 16, bottom: 20),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          mainAxisExtent: 300,
+          maxCrossAxisExtent: 200,
+          mainAxisSpacing: 20,
+          crossAxisSpacing: 10,
+        ),
+        itemCount: items.length,
+        itemBuilder: (context, i) {
+          final item = items[i];
+
+          return ProductWidget(
+            product: ProductItemEntity(
+              id: item.id,
+              title: item.title,
+              description: item.description,
+              price: item.price,
+              discountPercentage: item.discountPercentage,
+              rating: item.rating,
+              images: item.images,
+            ),
+          );
+        },
+      ),
     );
   }
 }
