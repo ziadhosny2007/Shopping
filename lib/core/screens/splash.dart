@@ -30,7 +30,8 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FadeInLeft(
+      body: BounceInDown(
+        from: 250,
         delay: Duration(seconds: 1),
         animate: true,
         child: Center(

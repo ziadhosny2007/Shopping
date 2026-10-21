@@ -96,27 +96,3 @@ class GetAllCategories extends Intent {}
 class GetAllProducts extends Intent {}
 
 class GetCallBoth extends Intent {}
-// class HomeCubit extends Cubit<HomeState> {
-//   HomeCubit(this.useCase) : super(StateLoading());
-//   final GetItemUseCase useCase;
-
-//   void intent() {
-//     getAllProducts();
-//   }
-
-//   void getAllProducts() async {
-//     emit(StateLoading());
-//     var result = await useCase.invoke();
-//     switch (result) {
-//       case Success():
-//         emit(StateSuccess(result.data));
-//       case Error():
-//         emit(StateError(result.error));
-//       // ignore: unreachable_switch_default
-//       default:
-//         StateLoading;
-//     }
-//   }
-
-//   void getAllCategories() {}
-// }

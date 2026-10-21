@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:shopping/core/Themes/colors_app.dart';
 import 'package:shopping/core/di/service_locator.dart';
 import 'package:shopping/core/widgets/Buttons/black_btn.dart';
@@ -21,7 +23,35 @@ class ProductDetails extends StatelessWidget {
         body: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
           builder: (context, state) {
             if (state is ProductDetailsError) {
-              return Center(child: Text(state.error));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  duration: Duration(seconds: 3),
+                  showCloseIcon: true,
+                  content: Text(
+                    state.error,
+                    style: TextStyle(fontWeight: .w400, fontSize: 16),
+                  ),
+                  backgroundColor: Colors.red,
+                  elevation: 2,
+                ),
+              );
+              return Center(
+                child: Column(
+                  mainAxisAlignment: .center,
+                  crossAxisAlignment: .center,
+                  spacing: 12,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: SvgPicture.asset(
+                        "assets/svg/error.svg",
+                        width: 200,
+                        height: 200,
+                      ),
+                    ),
+                  ],
+                ),
+              );
             }
 
             if (state is ProductDetailsSuccess) {
@@ -63,11 +93,23 @@ class ProductDetails extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Image.network(
-                                item.images.first,
+                              CachedNetworkImage(
+                                imageUrl: item.images.first,
                                 width: 264,
                                 height: 260,
                                 fit: BoxFit.cover,
+                                progressIndicatorBuilder:
+                                    (context, url, progress) => Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.amberAccent,
+                                      ),
+                                    ),
+                                errorWidget: (context, url, error) =>
+                                    Image.asset(
+                                      "assets/images/error.png",
+                                      width: 120,
+                                      height: 120,
+                                    ),
                               ),
                             ],
                           ),
@@ -86,14 +128,14 @@ class ProductDetails extends StatelessWidget {
                             spacing: 4,
                             children: [
                               Text(
-                                "${item.price} EGP",
+                                "${item.price.floorToDouble()} EGP",
                                 style: Theme.of(context)
                                     .primaryTextTheme
                                     .bodySmall
                                     ?.copyWith(color: ColorsApp.text),
                               ),
                               Text(
-                                " ${item.discountPercentage.toString()}%",
+                                " ${item.discountPercentage.floorToDouble()}%",
                                 style: Theme.of(context)
                                     .primaryTextTheme
                                     .bodySmall
@@ -115,8 +157,14 @@ class ProductDetails extends StatelessWidget {
                               ),
                         ),
                       ),
-                      Center(
-                        child: BlackBtn(text: "Add to cart", onPressed: () {}),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40),
+                        child: Center(
+                          child: BlackBtn(
+                            text: "Add to cart",
+                            onPressed: () {},
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -124,7 +172,11 @@ class ProductDetails extends StatelessWidget {
               );
             } else {
               return Center(
-                child: CircularProgressIndicator(color: Colors.amberAccent),
+                child: SvgPicture.asset(
+                  "assets/svg/loading.svg",
+                  width: 200,
+                  height: 200,
+                ),
               );
             }
           },

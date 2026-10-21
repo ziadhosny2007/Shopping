@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping/core/routes/routes.dart';
+import 'package:shopping/core/utils/massege_error.dart';
 import 'package:shopping/core/utils/progress_dialog.dart';
 import 'package:shopping/core/widgets/Buttons/primary_btn.dart';
 import 'package:shopping/core/widgets/text_filed.dart';
@@ -65,9 +66,7 @@ class _RegisterState extends State<Register> {
               if (state is RegisterError) {
                 Navigator.of(context).pop();
 
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(SnackBar(content: Text(state.message)));
+                MassegeError.show(context, error: state.message);
               }
             },
             child: Column(

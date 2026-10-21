@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping/core/di/service_locator.dart';
@@ -9,6 +10,7 @@ import 'package:shopping/features/auth/presentation/view/screens/login.dart';
 import 'package:shopping/features/auth/presentation/view/screens/register.dart';
 import 'package:shopping/features/auth/presentation/view_model/Login_cubit/login_cubit.dart';
 import 'package:shopping/features/auth/presentation/view_model/Register_cubit/register_cubit.dart';
+import 'package:shopping/features/favourite/presentation/view_model/favourite_cubit.dart';
 
 abstract class Routes {
   static String login = "login";
@@ -37,7 +39,10 @@ abstract class Routes {
     // account: (context) => Account(),
     // favourite: (context) => Favourite(),
     splash: (context) => Splash(),
-    appSection: (context) => AppSection(),
+    appSection: (context) => BlocProvider(
+      create: (context) => serviceLocator<FavouriteCubit>(),
+      child: AppSection(),
+    ),
     onboarding: (context) => Onboarding(),
     //     resetPassword: (context) => ResetPassword(),
     hello: (context) => Hello(),

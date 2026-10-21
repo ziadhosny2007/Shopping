@@ -12,7 +12,7 @@ class ProductByCategoryRepoImp implements ProductByCategoryRepoInterface {
   Future<Result<ProductByCategoryEntity>> getProductByCategory(
     String slug, {
     int skip = 0,
-    int limit = 20,
+    int limit = 10,
   }) async {
     final res = await _dataSource.getProductByCategory(
       slug,

@@ -5,6 +5,6 @@ abstract class ProductByCategoryDataSourceInterface {
   Future<Result<ProductByCategoryDto>> getProductByCategory(
     String slug, {
     int skip = 0,
-    int limit = 20,
+    int limit = 10,
   });
 }

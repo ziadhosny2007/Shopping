@@ -4,6 +4,6 @@ import 'package:shopping/features/product_by_category/data/models/product_by_cat
 abstract class ProductByCategoryApiInterface {
   Future<Result<ProductByCategoryDto>> getProductByCategory( String slug, {
     int skip = 0,
-    int limit = 20,
+    int limit = 10,
   });
 }
