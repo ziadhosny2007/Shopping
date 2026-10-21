@@ -117,6 +117,26 @@ import 'package:shopping/features/product_details/domain/use_case/get_product_de
     as _i1059;
 import 'package:shopping/features/product_details/presentation/view_model/product_details_cubit.dart'
     as _i536;
+import 'package:shopping/features/profile/data/api/profile_api_imp.dart'
+    as _i988;
+import 'package:shopping/features/profile/data/api/profile_api_interface.dart'
+    as _i227;
+import 'package:shopping/features/profile/data/repo/profile_data_source_imp.dart'
+    as _i946;
+import 'package:shopping/features/profile/data/repo/profile_repo_imp.dart'
+    as _i429;
+import 'package:shopping/features/profile/domain/repo/profile_data_source_interface.dart'
+    as _i497;
+import 'package:shopping/features/profile/domain/repo/profile_repo_interface.dart'
+    as _i190;
+import 'package:shopping/features/profile/domain/use_case/profile_use_case.dart'
+    as _i855;
+import 'package:shopping/features/profile/domain/use_case/submit_data_use_case.dart'
+    as _i734;
+import 'package:shopping/features/profile/domain/use_case/upload_profile_image_use_case.dart'
+    as _i711;
+import 'package:shopping/features/profile/presentation/view_model/profile_cubit.dart'
+    as _i1012;
 import 'package:shopping/features/search/data/api/search_api_imp.dart' as _i128;
 import 'package:shopping/features/search/data/api/search_api_interface.dart'
     as _i393;
@@ -148,6 +168,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i393.SearchApiInterface>(
       () => _i128.SearchApiImp(gh<_i414.AppSecureStorage>()),
+    );
+    gh.factory<_i227.ProfileApiInterface>(
+      () => _i988.ProfileApiImp(gh<_i414.AppSecureStorage>()),
+    );
+    gh.factory<_i497.ProfileDataSourceInterface>(
+      () => _i946.ProfileDataSourceImp(gh<_i227.ProfileApiInterface>()),
     );
     gh.factory<_i705.ProductByCategoryApiInterface>(
       () => _i886.ProductByCategoryApiImp(gh<_i414.AppSecureStorage>()),
@@ -185,6 +211,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i830.ProductByCategoryDataSourceInterface>(),
       ),
     );
+    gh.factory<_i190.ProfileRepoInterface>(
+      () => _i429.ProfileRepoImp(gh<_i497.ProfileDataSourceInterface>()),
+    );
     gh.factory<_i836.ProductByCategoryUseCase>(
       () => _i836.ProductByCategoryUseCase(
         gh<_i1033.ProductByCategoryRepoInterface>(),
@@ -219,6 +248,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i466.CartRepoInterface>(
       () => _i948.CartRepoImp(gh<_i1059.CartDataSourceInterface>()),
     );
+    gh.factory<_i855.ProfileUseCase>(
+      () => _i855.ProfileUseCase(gh<_i190.ProfileRepoInterface>()),
+    );
+    gh.factory<_i734.SubmitDataUseCase>(
+      () => _i734.SubmitDataUseCase(gh<_i190.ProfileRepoInterface>()),
+    );
+    gh.factory<_i711.UploadProfileImageUseCase>(
+      () => _i711.UploadProfileImageUseCase(gh<_i190.ProfileRepoInterface>()),
+    );
     gh.factory<_i408.SearchUseCase>(
       () => _i408.SearchUseCase(gh<_i565.SearchRepoInterface>()),
     );
@@ -247,6 +285,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i123.RegisterCubit>(
       () => _i123.RegisterCubit(gh<_i751.AuthRegisterUseCase>()),
+    );
+    gh.factory<_i1012.ProfileCubit>(
+      () => _i1012.ProfileCubit(
+        gh<_i855.ProfileUseCase>(),
+        gh<_i711.UploadProfileImageUseCase>(),
+        gh<_i734.SubmitDataUseCase>(),
+      ),
     );
     gh.factory<_i788.SearchCubit>(
       () => _i788.SearchCubit(gh<_i408.SearchUseCase>()),
