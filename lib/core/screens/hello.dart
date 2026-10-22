@@ -16,32 +16,34 @@ class _HelloState extends State<Hello> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: .center,
-          mainAxisAlignment: .start,
-          children: [
-            Center(
-              child: Image.asset(
-                "assets/images/hello.png",
-                width: 345,
-                height: 262,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 24),
-              child: Text(
-                textAlign: .center,
-                "Hello!",
-                style: TextStyle(
-                  fontWeight: .w500,
-                  fontSize: 48,
-                  color: ColorsApp.text,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: .center,
+            mainAxisAlignment: .start,
+            children: [
+              Center(
+                child: Image.asset(
+                  "assets/images/hello.png",
+                  width: 345,
+                  height: 262,
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(top: 24),
+                child: Text(
+                  textAlign: .center,
+                  "Hello!",
+                  style: TextStyle(
+                    fontWeight: .w500,
+                    fontSize: 48,
+                    color: ColorsApp.text,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: SafeArea(

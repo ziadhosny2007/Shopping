@@ -10,13 +10,37 @@ import 'package:shopping/core/widgets/text_filed.dart';
 import 'package:shopping/features/profile/domain/entities/profile_entity.dart';
 import 'package:shopping/features/profile/presentation/view_model/profile_cubit.dart';
 
-class Account extends StatelessWidget {
-  Account({super.key});
+class Account extends StatefulWidget {
+  const Account({super.key});
 
-  String? name;
-  String? address;
-  String? phone;
+  @override
+  State<Account> createState() => _AccountState();
+}
+
+class _AccountState extends State<Account> {
+  late TextEditingController name;
+
+  late TextEditingController address;
+
+  late TextEditingController phone;
+
   String? image;
+
+  @override
+  void initState() {
+    super.initState();
+    name = TextEditingController();
+    phone = TextEditingController();
+    address = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    name.dispose();
+    phone.dispose();
+    address.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +73,9 @@ class Account extends StatelessWidget {
         builder: (context, state) {
           if (state is ProfileSuccess) {
             final ProfileEntity data = state.data;
+            name.text = data.name;
+            phone.text = data.phone;
+            address.text = data.address;
             final cubit = context.read<ProfileCubit>();
             final selectedImage = cubit.image;
 
@@ -163,13 +190,7 @@ class Account extends StatelessWidget {
                         textAlign: TextAlign.start,
                       ),
                     ),
-                    TextFiledStyle(
-                      isSecure: false,
-                      controller: TextEditingController(text: data.name),
-                      onChanged: (value) {
-                        name = value;
-                      },
-                    ),
+                    TextFiledStyle(isSecure: false, controller: name),
 
                     const SizedBox(height: 20),
 
@@ -181,13 +202,7 @@ class Account extends StatelessWidget {
                         textAlign: TextAlign.start,
                       ),
                     ),
-                    TextFiledStyle(
-                      isSecure: false,
-                      controller: TextEditingController(text: data.address),
-                      onChanged: (value) {
-                        address = value;
-                      },
-                    ),
+                    TextFiledStyle(isSecure: false, controller: address),
 
                     const SizedBox(height: 20),
 
@@ -202,10 +217,7 @@ class Account extends StatelessWidget {
                     TextFiledStyle(
                       hint: "Phone",
                       isSecure: false,
-                      controller: TextEditingController(text: data.phone),
-                      onChanged: (value) {
-                        phone = value;
-                      },
+                      controller: phone,
                     ),
 
                     const SizedBox(height: 20),
@@ -218,10 +230,10 @@ class Account extends StatelessWidget {
                           onPressed: () async {
                             context.read<ProfileCubit>().submitData(
                               ProfileEntity(
-                                address: address ?? data.address,
+                                address: address.text,
                                 image: image ?? data.image,
-                                name: name ?? data.name,
-                                phone: phone ?? data.phone,
+                                name: name.text,
+                                phone: phone.text,
                               ),
                             );
                           },

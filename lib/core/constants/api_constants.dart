@@ -16,6 +16,6 @@ abstract class ApiConstants {
   static const String addCart = '/user/addCart';
   static const String deleteCart = '/user/deleteCart';
   static const String getUserData = '/portfoilo/userData';
-  static const String editUserData = '/portfolio/editUserData';
-  static const String uploadImage = '/portfolio/addImage';
+  static const String editUserData = '/portfoilo/editUserData';
+  static const String uploadImage = '/portfoilo/addImage';
 }

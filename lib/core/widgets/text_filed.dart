@@ -2,29 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:shopping/core/Themes/colors_app.dart';
 
 // ignore: must_be_immutable
-class TextFiledStyle extends StatelessWidget {
+class TextFiledStyle extends StatefulWidget {
   TextFiledStyle({
     super.key,
     this.hint = "",
     required this.isSecure,
     this.controller,
-    this.onChanged,
   });
   String hint;
   bool isSecure;
   TextEditingController? controller;
+
+  @override
+  State<TextFiledStyle> createState() => _TextFiledStyleState();
+}
+
+class _TextFiledStyleState extends State<TextFiledStyle> {
   bool click = false;
-  Function(String value)? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 345,
       child: TextFormField(
-        controller: controller,
-        onChanged: onChanged,
-        obscureText: isSecure,
+        controller: widget.controller,
+        obscureText: widget.isSecure,
         decoration: InputDecoration(
-          hint: Text(hint, style: Theme.of(context).primaryTextTheme.bodySmall),
+          hint: Text(
+            widget.hint,
+            style: Theme.of(context).primaryTextTheme.bodySmall,
+          ),
           filled: true,
           fillColor: ColorsApp.backgroundColor,
           enabledBorder: OutlineInputBorder(
@@ -35,9 +42,13 @@ class TextFiledStyle extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(color: ColorsApp.orangeDark),
           ),
-          suffixIcon: (isSecure)
+          suffixIcon: (widget.isSecure)
               ? IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      widget.isSecure = !widget.isSecure;
+                    });
+                  },
                   icon: Icon(
                     (click) ? Icons.visibility : Icons.visibility_off_outlined,
                   ),

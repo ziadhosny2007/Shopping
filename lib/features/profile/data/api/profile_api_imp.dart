@@ -32,7 +32,9 @@ class ProfileApiImp implements ProfileApiInterface {
       if (response.statusCode >= 200 && response.statusCode < 300) {
         final json = jsonDecode(response.body);
 
-        final data = ProfileDto.fromJson(json);
+        final data = ProfileDto.fromJson(
+          json['message'] as Map<String, dynamic>,
+        );
 
         return Success(data);
       } else {
@@ -50,7 +52,7 @@ class ProfileApiImp implements ProfileApiInterface {
     try {
       final token = await _storage.read(AppKeys.token);
 
-      if (token == null || token.trim().isEmpty) {
+      if (token.trim().isEmpty) {
         return Error('Token not found. Please login again.');
       }
 
