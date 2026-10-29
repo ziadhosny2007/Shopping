@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:shopping/core/di/service_locator.dart';
 import 'package:shopping/core/model/item/product_item_entity.dart';
 import 'package:shopping/core/model/widget/product_widget.dart';
@@ -133,7 +132,8 @@ class _HomeViewState extends State<HomeView> {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) => BlocProvider(
-                                    create: (context) =>  serviceLocator<FavouriteCubit>(),
+                                    create: (context) =>
+                                        serviceLocator<FavouriteCubit>(),
                                     child: CategoryScreen(
                                       name: state.categories[index].name,
                                       slug: state.categories[index].slug,
@@ -221,8 +221,8 @@ class _HomeViewState extends State<HomeView> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(
-                              "assets/svg/error.svg",
+                            Image.asset(
+                              "assets/images/error.gif",
                               width: 200,
                               height: 200,
                             ),

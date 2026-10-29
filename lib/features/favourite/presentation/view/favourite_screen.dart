@@ -53,8 +53,8 @@ class FavouriteScreen extends StatelessWidget {
 
               if (state is FavouriteError) {
                 return Center(
-                  child: SvgPicture.asset(
-                    "assets/svg/error.svg",
+                  child: Image.asset(
+                    "assets/images/error.gif",
                     width: 200,
                     height: 200,
                   ),

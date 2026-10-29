@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:shopping/core/di/service_locator.dart';
 import 'package:shopping/core/model/item/product_item_entity.dart';
 import 'package:shopping/core/model/widget/product_widget.dart';
@@ -120,8 +119,8 @@ class _CategoryScreenState extends State<CategoryScreenView> {
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
-                                  child: SvgPicture.asset(
-                                    "assets/svg/error.svg",
+                                  child: Image.asset(
+                                    "assets/images/error.gif",
                                     width: 200,
                                     height: 200,
                                   ),

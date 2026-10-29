@@ -58,28 +58,27 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-Future<void> pickProfileImage(ImageSource source) async {
-  try {
-    final picker = ImagePicker();
+  Future<void> pickProfileImage(ImageSource source) async {
+    try {
+      final picker = ImagePicker();
 
-    final pickedImage = await picker.pickImage(
-      source: source,
-      imageQuality: 85,
-    );
+      final pickedImage = await picker.pickImage(
+        source: source,
+        imageQuality: 85,
+      );
 
-    if (isClosed || pickedImage == null) return;
+      if (isClosed || pickedImage == null) return;
 
-    _image = pickedImage;
+      _image = pickedImage;
 
-    // Refresh the UI without losing the profile data.
-    if (_profileData != null) {
-      emit(ProfileSuccess(_profileData!));
+      if (_profileData != null) {
+        emit(ProfileSuccess(_profileData!));
+      }
+    } catch (e) {
+      if (isClosed) return;
+      emit(ImageError(message: e.toString()));
     }
-  } catch (e) {
-    if (isClosed) return;
-    emit(ImageError(message: e.toString()));
   }
-}
 
   Future<void> uploadProfileImage() async {
     if (_image == null) {
@@ -103,11 +102,15 @@ Future<void> pickProfileImage(ImageSource source) async {
 
   Future<void> submitData(ProfileEntity data) async {
     emit(ProfileLoading());
+
     final res = await submitDataUseCase.invoke(data);
+
+    if (isClosed) return;
 
     switch (res) {
       case Success():
-        emit(ProfileSuccess(res.data));
+        await getUserData();
+
       case Error():
         emit(ProfileError(res.error));
     }
