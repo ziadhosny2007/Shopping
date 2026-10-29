@@ -53,8 +53,8 @@ class CartScreen extends StatelessWidget {
                 return Center(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(4),
-                    child: SvgPicture.asset(
-                      "assets/svg/error.svg",
+                    child: Image.asset(
+                      "assets/images/error.gif",
                       width: 200,
                       height: 200,
                     ),

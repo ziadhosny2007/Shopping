@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping/core/Themes/colors_app.dart';
+import 'package:shopping/core/di/service_locator.dart';
 import 'package:shopping/core/model/item/product_item_entity.dart';
 import 'package:shopping/features/favourite/presentation/view_model/favourite_cubit.dart';
 import 'package:shopping/features/product_details/presentation/view/product_details.dart';
@@ -17,7 +18,10 @@ class ProductWidget extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => ProductDetails(id: product.id),
+            builder: (context) => BlocProvider(
+              create: (context) => serviceLocator<FavouriteCubit>(),
+              child: ProductDetails(id: product.id),
+            ),
           ),
         );
       },
@@ -75,19 +79,22 @@ class ProductWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  CachedNetworkImage(
-                    width: 164,
-                    height: 164,
-                    fit: BoxFit.cover,
-                    imageUrl: product.images.first,
-                    placeholder: (context, url) => const Center(
-                      child: CircularProgressIndicator(color: Colors.amber),
-                    ),
-                    errorWidget: (context, url, error) => Center(
-                      child: Image.asset(
-                        'assets/images/error.png',
-                        width: 32,
-                        height: 32,
+                  Hero(
+                    tag: product.id,
+                    child: CachedNetworkImage(
+                      width: 164,
+                      height: 164,
+                      fit: BoxFit.cover,
+                      imageUrl: product.images.first,
+                      placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(color: Colors.amber),
+                      ),
+                      errorWidget: (context, url, error) => Center(
+                        child: Image.asset(
+                          'assets/images/error.png',
+                          width: 32,
+                          height: 32,
+                        ),
                       ),
                     ),
                   ),

@@ -18,15 +18,15 @@ class TextFiledStyle extends StatefulWidget {
 }
 
 class _TextFiledStyleState extends State<TextFiledStyle> {
-  bool click = false;
-
+  bool click = true;
+  late bool secure=widget.isSecure;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 345,
       child: TextFormField(
         controller: widget.controller,
-        obscureText: widget.isSecure,
+        obscureText: secure,
         decoration: InputDecoration(
           hint: Text(
             widget.hint,
@@ -46,14 +46,15 @@ class _TextFiledStyleState extends State<TextFiledStyle> {
               ? IconButton(
                   onPressed: () {
                     setState(() {
-                      widget.isSecure = !widget.isSecure;
+                      secure=!secure;
+                      click = !click;
                     });
                   },
                   icon: Icon(
-                    (click) ? Icons.visibility : Icons.visibility_off_outlined,
+                    (click) ? Icons.visibility_off_outlined : Icons.visibility,
                   ),
                 )
-              : Text(""),
+              : SizedBox.shrink(),
         ),
       ),
     );
