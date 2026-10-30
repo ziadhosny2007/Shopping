@@ -74,7 +74,7 @@ It provides users with essential e-commerce functionalities through an organized
 
 ![Login](assets/screenshots/login.png)
 
-![Sign Up](assets/screenshots/Signup.png)
+![Sign Up](assets/screenshots/Sign up.png)
 
 ### 🏠 Home & Products
 
