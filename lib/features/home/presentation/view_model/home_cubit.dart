@@ -17,7 +17,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   final List<ItemEntity> _items = [];
   int _skip = 0;
-  int _limit = 20;
+  final int _limit = 20;
 
   bool _isFetching = false;
   bool _hasReachedMax = false;

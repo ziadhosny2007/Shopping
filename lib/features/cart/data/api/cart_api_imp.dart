@@ -101,11 +101,7 @@ class CartApiImp implements CartApiInterface {
         },
       );
 
-      // Debug
-      print("Cart URL: $url");
-      print("Token exists: ${token != null && token.isNotEmpty}");
-      print("Status Code: ${response.statusCode}");
-      print("Response Body: ${response.body}");
+
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         final decoded = jsonDecode(response.body);

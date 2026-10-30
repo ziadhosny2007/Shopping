@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:shopping/core/network/result.dart';
 import 'package:shopping/features/auth/domain/entities/auth_login_requst_entity.dart';
 import 'package:shopping/features/auth/domain/entities/login_response_entity.dart';

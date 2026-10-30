@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -148,8 +149,7 @@ class _SuccessWidget extends StatelessWidget {
         return BlocListener<FavouriteCubit, FavouriteState>(
           listener: (context, state) {
             if (state is FavouriteError) {
-               MassegeError.show(context, error: state.error);
-
+              MassegeError.show(context, error: state.error);
             }
           },
           child: ProductWidget(
@@ -163,7 +163,7 @@ class _SuccessWidget extends StatelessWidget {
               images: item.images,
             ),
           ),
-        );
+        ).fadeIn(delay: Duration(milliseconds: 20)).shakeY();
       },
     );
   }
