@@ -62,7 +62,38 @@ It provides users with essential e-commerce functionalities through an organized
 - Modular feature organization.
 
 ---
+## 📸 App Screenshots
 
+### 🚀 Splash & Onboarding
+
+![Splash Screen](assets/screenshots/splash.png)
+
+![Onboarding](assets/screenshots/onboarding1.png)
+![Onboarding](assets/screenshots/onboarding2.png)
+### 🔐 Authentication
+
+![Login](assets/screenshots/login.png)
+
+![Sign Up](assets/screenshots/Signup.png)
+
+### 🏠 Home & Products
+
+![Home](assets/screenshots/home.png)
+
+![Product Details](assets/screenshots/details Screen.png)
+
+### ❤️ Favorites
+
+![Favorites](assets/screenshots/favorite.png)
+
+### 🛒 Shopping Cart
+
+![Cart](assets/screenshots/cart.png)
+
+### 👤 Profile
+
+![Profile](assets/screenshots/profile.png)
+---
 ## 🛠️ Technologies & Packages
 
 | Technology | Purpose |
