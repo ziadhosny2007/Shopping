@@ -66,33 +66,33 @@ It provides users with essential e-commerce functionalities through an organized
 
 ### 🚀 Splash & Onboarding
 
-![Splash Screen](assets/screenshots/splash.png)
+![Splash Screen](assets/assets/screenshots/splash.png)
 
-![Onboarding](assets/screenshots/onboarding1.png)
-![Onboarding](assets/screenshots/onboarding2.png)
+![Onboarding](assets/assets/screenshots/onboarding1.png)
+![Onboarding](assets/assets/screenshots/onboarding2.png)
 ### 🔐 Authentication
 
-![Login](assets/screenshots/login.png)
+![Login](assets/assets/screenshots/login.png)
 
-![Sign Up](assets/screenshots/Sign up.png)
+![Sign Up](assets/assets/screenshots/Sign up.png)
 
 ### 🏠 Home & Products
 
-![Home](assets/screenshots/home.png)
+![Home](assets/assets/screenshots/home.png)
 
-![Product Details](assets/screenshots/details Screen.png)
+![Product Details](assets/assets/screenshots/details Screen.png)
 
 ### ❤️ Favorites
 
-![Favorites](assets/screenshots/favorite.png)
+![Favorites](assets/assets/screenshots/favorite.png)
 
 ### 🛒 Shopping Cart
 
-![Cart](assets/screenshots/cart.png)
+![Cart](assets/assets/screenshots/cart.png)
 
 ### 👤 Profile
 
-![Profile](assets/screenshots/profile.png)
+![Profile](assets/assets/screenshots/profile.png)
 ---
 ## 🛠️ Technologies & Packages
 
