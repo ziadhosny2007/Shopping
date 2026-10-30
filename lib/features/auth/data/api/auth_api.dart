@@ -22,8 +22,7 @@ class AuthApi {
         },
         body: jsonEncode(auth.toJson()),
       );
-      print('Status Code: ${response.statusCode}');
-      print('Response: ${response.body}');
+   
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         var json = jsonDecode(response.body);
@@ -50,8 +49,7 @@ class AuthApi {
         },
         body: jsonEncode(auth.toJson()),
       );
-      print('Status Code: ${response.statusCode}');
-      print('Response: ${response.body}');
+
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         var json = jsonDecode(response.body);

@@ -13,7 +13,7 @@ class AppSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> Page = [Home(), CartScreen(), FavouriteScreen(), Account()];
+    List<Widget> page = [Home(), CartScreen(), FavouriteScreen(), Account()];
     int index = 0;
     return BlocProvider(
       create: (context) => BottomNavCubitCubit()..intent(GetIndx(index)),
@@ -30,7 +30,7 @@ class AppSection extends StatelessWidget {
           }
 
           return Scaffold(
-            body: Page[index],
+            body: page[index],
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: index,
               onTap: (value) {

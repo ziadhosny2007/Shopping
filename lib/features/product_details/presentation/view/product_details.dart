@@ -5,6 +5,7 @@ import 'package:shopping/core/Themes/colors_app.dart';
 import 'package:shopping/core/di/service_locator.dart';
 import 'package:shopping/core/utils/massege_error.dart';
 import 'package:shopping/core/widgets/Buttons/black_btn.dart';
+import 'package:shopping/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:shopping/features/favourite/presentation/view_model/favourite_cubit.dart';
 import 'package:shopping/features/product_details/domain/entities/product_details_entity.dart';
 import 'package:shopping/features/product_details/presentation/view_model/product_details_cubit.dart';
@@ -16,11 +17,15 @@ class ProductDetails extends StatelessWidget {
   int id;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          serviceLocator<ProductDetailsCubit>()
-            ..intent(GetProductDetails(), id),
-
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              serviceLocator<ProductDetailsCubit>()
+                ..intent(GetProductDetails(), id),
+        ),
+        BlocProvider(create: (context) => serviceLocator<CartCubit>()),
+      ],
       child: Scaffold(
         appBar: AppBar(),
         body: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
@@ -120,8 +125,8 @@ class DetailsSuccess extends StatelessWidget {
                                     final favourites = state.data;
 
                                     return favourites.any(
-                                      (item) =>
-                                          item.id.toString() ==
+                                      (fav) =>
+                                          fav.id.toString() ==
                                           item.id.toString(),
                                     );
                                   }
@@ -222,7 +227,19 @@ class DetailsSuccess extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 40),
               child: Center(
-                child: BlackBtn(text: "Add to cart", onPressed: () {}),
+                child: BlocListener<CartCubit, CartState>(
+                  listener: (context, state) {
+                    if (state is CartError) {
+                      MassegeError.show(context, error: state.error);
+                    }
+                  },
+                  child: BlackBtn(
+                    text: "Add to cart",
+                    onPressed: () {
+                      context.read<CartCubit>().addToCart(item.id.toString());
+                    },
+                  ),
+                ),
               ),
             ),
           ],

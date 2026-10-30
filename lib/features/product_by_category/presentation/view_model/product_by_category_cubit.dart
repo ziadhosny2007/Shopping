@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:shopping/core/network/result.dart';
 import 'package:shopping/features/product_by_category/domain/entities/product_by_category_entity.dart';
 import 'package:shopping/features/product_by_category/domain/use_case/product_by_category_use_case.dart';

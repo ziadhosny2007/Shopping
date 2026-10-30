@@ -1,6 +1,5 @@
 part of 'product_by_category_cubit.dart';
 
-@immutable
 sealed class ProductByCategoryState {}
 
 final class ProductByCategoryInitial extends ProductByCategoryState {}
